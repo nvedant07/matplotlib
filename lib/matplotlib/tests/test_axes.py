@@ -4974,13 +4974,23 @@ def test_bar_single_height():
     ax.bar(0, 1, bottom=range(4), width=1, orientation='horizontal')
 
 
-def test_invalid_axis_limits():
-    plt.plot([0, 1], [0, 1])
-    with pytest.raises(ValueError):
-        plt.xlim(np.nan)
-    with pytest.raises(ValueError):
-        plt.xlim(np.inf)
-    with pytest.raises(ValueError):
-        plt.ylim(np.nan)
-    with pytest.raises(ValueError):
-        plt.ylim(np.inf)
+def invalid_axes_limits():
+    with pytest.raises(ValueError) as err:
+        plt.set_xlim(left=np.nan)
+    with pytest.raises(ValueError) as err:
+        plt.set_xlim(left=np.inf)
+    with pytest.raises(ValueError) as err:
+        plt.set_xlim(right=np.nan)
+    with pytest.raises(ValueError) as err:
+        plt.set_xlim(right=np.inf)
+
+    with pytest.raises(ValueError) as err:
+        plt.set_ylim(bottom=np.nan)
+    with pytest.raises(ValueError) as err:
+        plt.set_ylim(bottom=np.inf)
+    with pytest.raises(ValueError) as err:
+        plt.set_ylim(top=np.nan)
+    with pytest.raises(ValueError) as err:
+        plt.set_ylim(top=np.inf)
+
+    err.match('NaN or Inf cannot be the argument values')

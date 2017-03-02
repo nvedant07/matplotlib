@@ -491,3 +491,34 @@ def test_autoscale():
     ax.set_autoscalez_on(True)
     ax.plot([0, 2], [0, 2], [0, 2])
     assert ax.get_w_lims() == (0, 1, -.1, 1.1, -.4, 2.4)
+
+
+def invalid_axes_limits():
+    with pytest.raises(ValueError) as err:
+        plt.set_xlim3d(left=np.nan)
+    with pytest.raises(ValueError) as err:
+        plt.set_xlim3d(left=np.inf)
+    with pytest.raises(ValueError) as err:
+        plt.set_xlim3d(right=np.nan)
+    with pytest.raises(ValueError) as err:
+        plt.set_xlim3d(right=np.inf)
+
+    with pytest.raises(ValueError) as err:
+        plt.set_ylim3d(bottom=np.nan)
+    with pytest.raises(ValueError) as err:
+        plt.set_ylim3d(bottom=np.inf)
+    with pytest.raises(ValueError) as err:
+        plt.set_ylim3d(top=np.nan)
+    with pytest.raises(ValueError) as err:
+        plt.set_ylim3d(top=np.inf)
+
+    with pytest.raises(ValueError) as err:
+        plt.set_zlim3d(bottom=np.nan)
+    with pytest.raises(ValueError) as err:
+        plt.set_zlim3d(bottom=np.inf)
+    with pytest.raises(ValueError) as err:
+        plt.set_zlim3d(top=np.nan)
+    with pytest.raises(ValueError) as err:
+        plt.set_zlim3d(top=np.inf)
+
+    err.match('NaN or Inf cannot be the argument values')

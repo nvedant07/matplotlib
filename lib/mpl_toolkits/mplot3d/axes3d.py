@@ -604,8 +604,14 @@ class Axes3D(Axes):
 
         self._process_unit_info(xdata=(left, right))
         if left is not None:
+            if (isinstance(left, float) and
+                    (not np.isreal(left) or not np.isfinite(left))):
+                raise ValueError("NaN or Inf cannot be the argument values")
             left = self.convert_xunits(left)
         if right is not None:
+            if (isinstance(right, float) and
+                    (not np.isreal(right) or not np.isfinite(right))):
+                raise ValueError("NaN or Inf cannot be the argument values")
             right = self.convert_xunits(right)
 
         old_left, old_right = self.get_xlim()
@@ -658,8 +664,14 @@ class Axes3D(Axes):
 
         self._process_unit_info(ydata=(bottom, top))
         if bottom is not None:
+            if (isinstance(bottom, float) and
+                    (not np.isreal(bottom) or not np.isfinite(bottom))):
+                raise ValueError("NaN or Inf cannot be the argument values")
             bottom = self.convert_yunits(bottom)
         if top is not None:
+            if (isinstance(top, float) and
+                    (not np.isreal(top) or not np.isfinite(top))):
+                raise ValueError("NaN or Inf cannot be the argument values")
             top = self.convert_yunits(top)
 
         old_bottom, old_top = self.get_ylim()
@@ -712,8 +724,14 @@ class Axes3D(Axes):
 
         self._process_unit_info(zdata=(bottom, top))
         if bottom is not None:
+            if (isinstance(bottom, float) and
+                    (not np.isreal(bottom) or not np.isfinite(bottom))):
+                raise ValueError("NaN or Inf cannot be the argument values")
             bottom = self.convert_zunits(bottom)
         if top is not None:
+            if (isinstance(top, float) and
+                    (not np.isreal(top) or not np.isfinite(top))):
+                raise ValueError("NaN or Inf cannot be the argument values")
             top = self.convert_zunits(top)
 
         old_bottom, old_top = self.get_zlim()

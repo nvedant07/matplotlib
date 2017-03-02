@@ -2874,11 +2874,13 @@ class _AxesBase(martist.Artist):
 
         self._process_unit_info(xdata=(left, right))
         if left is not None:
-            if isinstance(left,float) and (math.isnan(left) or np.isinf(left)):
+            if (isinstance(left, float) and
+                    (not np.isreal(left) or not np.isfinite(left))):
                 raise ValueError("NaN or Inf cannot be the argument values")
             left = self.convert_xunits(left)
         if right is not None:
-            if isinstance(right,float) and (math.isnan(right) or np.isinf(right)):
+            if (isinstance(right, float) and
+                    (not np.isreal(right) or not np.isfinite(right))):
                 raise ValueError("NaN or Inf cannot be the argument values")
             right = self.convert_xunits(right)
 
@@ -3177,8 +3179,14 @@ class _AxesBase(martist.Artist):
             bottom, top = bottom
 
         if bottom is not None:
+            if (isinstance(bottom, float) and
+                    (not np.isreal(bottom) or not np.isfinite(bottom))):
+                raise ValueError("NaN or Inf cannot be the argument values")
             bottom = self.convert_yunits(bottom)
         if top is not None:
+            if (isinstance(top, float) and
+                    (not np.isreal(top) or not np.isfinite(top))):
+                raise ValueError("NaN or Inf cannot be the argument values")
             top = self.convert_yunits(top)
 
         if ((top is not None and not np.isfinite(top)) or
