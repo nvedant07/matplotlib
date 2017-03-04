@@ -4974,23 +4974,30 @@ def test_bar_single_height():
     ax.bar(0, 1, bottom=range(4), width=1, orientation='horizontal')
 
 
-def invalid_axes_limits():
+def test_invalid_axes_limits():
+    error_string = 'NaN or Inf cannot be the argument values'
     with pytest.raises(ValueError) as err:
-        plt.set_xlim(left=np.nan)
+        plt.xlim(left=np.nan)
+    assert err.value.message == error_string
     with pytest.raises(ValueError) as err:
-        plt.set_xlim(left=np.inf)
+        plt.xlim(left=np.inf)
+    assert err.value.message == error_string
     with pytest.raises(ValueError) as err:
-        plt.set_xlim(right=np.nan)
+        plt.xlim(right=np.nan)
+    assert err.value.message == error_string
     with pytest.raises(ValueError) as err:
-        plt.set_xlim(right=np.inf)
+        plt.xlim(right=np.inf)
+    assert err.value.message == error_string
 
     with pytest.raises(ValueError) as err:
-        plt.set_ylim(bottom=np.nan)
+        plt.ylim(bottom=np.nan)
+    assert err.value.message == error_string
     with pytest.raises(ValueError) as err:
-        plt.set_ylim(bottom=np.inf)
+        plt.ylim(bottom=np.inf)
+    assert err.value.message == error_string
     with pytest.raises(ValueError) as err:
-        plt.set_ylim(top=np.nan)
+        plt.ylim(top=np.nan)
+    assert err.value.message == error_string
     with pytest.raises(ValueError) as err:
-        plt.set_ylim(top=np.inf)
-
-    err.match('NaN or Inf cannot be the argument values')
+        plt.ylim(top=np.inf)
+    assert err.value.message == error_string

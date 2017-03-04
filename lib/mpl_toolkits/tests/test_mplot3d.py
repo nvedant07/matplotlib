@@ -493,32 +493,45 @@ def test_autoscale():
     assert ax.get_w_lims() == (0, 1, -.1, 1.1, -.4, 2.4)
 
 
-def invalid_axes_limits():
+def test_invalid_axes_limits():
+    error_string = 'NaN or Inf cannot be the argument values'
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
     with pytest.raises(ValueError) as err:
-        plt.set_xlim3d(left=np.nan)
+        ax.set_xlim3d(left=np.nan)
+    assert err.value.message == error_string
     with pytest.raises(ValueError) as err:
-        plt.set_xlim3d(left=np.inf)
+        ax.set_xlim3d(left=np.inf)
+    assert err.value.message == error_string
     with pytest.raises(ValueError) as err:
-        plt.set_xlim3d(right=np.nan)
+        ax.set_xlim3d(right=np.nan)
+    assert err.value.message == error_string
     with pytest.raises(ValueError) as err:
-        plt.set_xlim3d(right=np.inf)
+        ax.set_xlim3d(right=np.inf)
+    assert err.value.message == error_string
 
     with pytest.raises(ValueError) as err:
-        plt.set_ylim3d(bottom=np.nan)
+        ax.set_ylim3d(bottom=np.nan)
+    assert err.value.message == error_string
     with pytest.raises(ValueError) as err:
-        plt.set_ylim3d(bottom=np.inf)
+        ax.set_ylim3d(bottom=np.inf)
+    assert err.value.message == error_string
     with pytest.raises(ValueError) as err:
-        plt.set_ylim3d(top=np.nan)
+        ax.set_ylim3d(top=np.nan)
+    assert err.value.message == error_string
     with pytest.raises(ValueError) as err:
-        plt.set_ylim3d(top=np.inf)
+        ax.set_ylim3d(top=np.inf)
+    assert err.value.message == error_string
 
     with pytest.raises(ValueError) as err:
-        plt.set_zlim3d(bottom=np.nan)
+        ax.set_zlim3d(bottom=np.nan)
+    assert err.value.message == error_string
     with pytest.raises(ValueError) as err:
-        plt.set_zlim3d(bottom=np.inf)
+        ax.set_zlim3d(bottom=np.inf)
+    assert err.value.message == error_string
     with pytest.raises(ValueError) as err:
-        plt.set_zlim3d(top=np.nan)
+        ax.set_zlim3d(top=np.nan)
+    assert err.value.message == error_string
     with pytest.raises(ValueError) as err:
-        plt.set_zlim3d(top=np.inf)
-
-    err.match('NaN or Inf cannot be the argument values')
+        ax.set_zlim3d(top=np.inf)
+    assert err.value.message == error_string
