@@ -4975,29 +4975,20 @@ def test_bar_single_height():
 
 
 def test_invalid_axes_limits():
-    error_string = 'NaN or Inf cannot be the argument values'
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(ValueError):
         plt.xlim(left=np.nan)
-    assert error_string in str(err.value)
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(ValueError):
         plt.xlim(left=np.inf)
-    assert error_string in str(err.value)
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(ValueError):
         plt.xlim(right=np.nan)
-    assert error_string in str(err.value)
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(ValueError):
         plt.xlim(right=np.inf)
-    assert error_string in str(err.value)
 
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(ValueError):
         plt.ylim(bottom=np.nan)
-    assert error_string in str(err.value)
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(ValueError):
         plt.ylim(bottom=np.inf)
-    assert error_string in str(err.value)
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(ValueError):
         plt.ylim(top=np.nan)
-    assert error_string in str(err.value)
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(ValueError):
         plt.ylim(top=np.inf)
-    assert error_string in str(err.value)

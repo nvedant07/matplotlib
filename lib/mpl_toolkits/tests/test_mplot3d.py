@@ -494,44 +494,31 @@ def test_autoscale():
 
 
 def test_invalid_axes_limits():
-    error_string = 'NaN or Inf cannot be the argument values'
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(ValueError):
         ax.set_xlim3d(left=np.nan)
-    assert error_string in str(err.value)
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(ValueError):
         ax.set_xlim3d(left=np.inf)
-    assert error_string in str(err.value)
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(ValueError):
         ax.set_xlim3d(right=np.nan)
-    assert error_string in str(err.value)
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(ValueError):
         ax.set_xlim3d(right=np.inf)
-    assert error_string in str(err.value)
 
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(ValueError):
         ax.set_ylim3d(bottom=np.nan)
-    assert error_string in str(err.value)
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(ValueError):
         ax.set_ylim3d(bottom=np.inf)
-    assert error_string in str(err.value)
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(ValueError):
         ax.set_ylim3d(top=np.nan)
-    assert error_string in str(err.value)
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(ValueError):
         ax.set_ylim3d(top=np.inf)
-    assert error_string in str(err.value)
 
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(ValueError):
         ax.set_zlim3d(bottom=np.nan)
-    assert error_string in str(err.value)
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(ValueError):
         ax.set_zlim3d(bottom=np.inf)
-    assert error_string in str(err.value)
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(ValueError):
         ax.set_zlim3d(top=np.nan)
-    assert error_string in str(err.value)
-    with pytest.raises(ValueError) as err:
+    with pytest.raises(ValueError):
         ax.set_zlim3d(top=np.inf)
-    assert error_string in str(err.value)
