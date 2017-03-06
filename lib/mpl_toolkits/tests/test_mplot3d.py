@@ -499,39 +499,39 @@ def test_invalid_axes_limits():
     ax = fig.add_subplot(111, projection='3d')
     with pytest.raises(ValueError) as err:
         ax.set_xlim3d(left=np.nan)
-    assert err.value.message == error_string
+    assert error_string in str(err.value)
     with pytest.raises(ValueError) as err:
         ax.set_xlim3d(left=np.inf)
-    assert err.value.message == error_string
+    assert error_string in str(err.value)
     with pytest.raises(ValueError) as err:
         ax.set_xlim3d(right=np.nan)
-    assert err.value.message == error_string
+    assert error_string in str(err.value)
     with pytest.raises(ValueError) as err:
         ax.set_xlim3d(right=np.inf)
-    assert err.value.message == error_string
+    assert error_string in str(err.value)
 
     with pytest.raises(ValueError) as err:
         ax.set_ylim3d(bottom=np.nan)
-    assert err.value.message == error_string
+    assert error_string in str(err.value)
     with pytest.raises(ValueError) as err:
         ax.set_ylim3d(bottom=np.inf)
-    assert err.value.message == error_string
+    assert error_string in str(err.value)
     with pytest.raises(ValueError) as err:
         ax.set_ylim3d(top=np.nan)
-    assert err.value.message == error_string
+    assert error_string in str(err.value)
     with pytest.raises(ValueError) as err:
         ax.set_ylim3d(top=np.inf)
-    assert err.value.message == error_string
+    assert error_string in str(err.value)
 
     with pytest.raises(ValueError) as err:
         ax.set_zlim3d(bottom=np.nan)
-    assert err.value.message == error_string
+    assert error_string in str(err.value)
     with pytest.raises(ValueError) as err:
         ax.set_zlim3d(bottom=np.inf)
-    assert err.value.message == error_string
+    assert error_string in str(err.value)
     with pytest.raises(ValueError) as err:
         ax.set_zlim3d(top=np.nan)
-    assert err.value.message == error_string
+    assert error_string in str(err.value)
     with pytest.raises(ValueError) as err:
         ax.set_zlim3d(top=np.inf)
-    assert err.value.message == error_string
+    assert error_string in str(err.value)

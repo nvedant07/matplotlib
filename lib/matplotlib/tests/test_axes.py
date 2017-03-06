@@ -4978,26 +4978,26 @@ def test_invalid_axes_limits():
     error_string = 'NaN or Inf cannot be the argument values'
     with pytest.raises(ValueError) as err:
         plt.xlim(left=np.nan)
-    assert err.value.message == error_string
+    assert error_string in str(err.value)
     with pytest.raises(ValueError) as err:
         plt.xlim(left=np.inf)
-    assert err.value.message == error_string
+    assert error_string in str(err.value)
     with pytest.raises(ValueError) as err:
         plt.xlim(right=np.nan)
-    assert err.value.message == error_string
+    assert error_string in str(err.value)
     with pytest.raises(ValueError) as err:
         plt.xlim(right=np.inf)
-    assert err.value.message == error_string
+    assert error_string in str(err.value)
 
     with pytest.raises(ValueError) as err:
         plt.ylim(bottom=np.nan)
-    assert err.value.message == error_string
+    assert error_string in str(err.value)
     with pytest.raises(ValueError) as err:
         plt.ylim(bottom=np.inf)
-    assert err.value.message == error_string
+    assert error_string in str(err.value)
     with pytest.raises(ValueError) as err:
         plt.ylim(top=np.nan)
-    assert err.value.message == error_string
+    assert error_string in str(err.value)
     with pytest.raises(ValueError) as err:
         plt.ylim(top=np.inf)
-    assert err.value.message == error_string
+    assert error_string in str(err.value)
