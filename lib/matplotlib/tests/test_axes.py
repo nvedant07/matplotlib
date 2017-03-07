@@ -4981,7 +4981,7 @@ def test_bar_single_height():
     (plt.ylim, 'bottom'),
     (plt.ylim, 'top'),
 ])
-def test_invalid_axes_limits(setter,side,value):
-    limit={side:value}
+def test_invalid_axes_limits(setter, side, value):
+    limit = {side: value}
     with pytest.raises(ValueError):
         setter(**limit)
