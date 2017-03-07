@@ -586,11 +586,11 @@ class Axes3D(Axes):
         return (xmin, xmax)
 
     def _validate_axis_limits(self, limit):
-        """ 
-        If the axis limits being set are infinite, this function 
-        
+        """
+        If the axis limits being set are infinite, this function
+
         raises an error.
-        
+
         """
         if (isinstance(limit, float) and
                 (not np.isreal(limit) or not np.isfinite(limit))):
