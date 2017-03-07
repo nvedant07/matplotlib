@@ -4974,21 +4974,14 @@ def test_bar_single_height():
     ax.bar(0, 1, bottom=range(4), width=1, orientation='horizontal')
 
 
-def test_invalid_axes_limits():
+@pytest.mark.parametrize('value', [np.inf, np.nan])
+@pytest.mark.parametrize(('setter', 'side'), [
+    (plt.xlim, 'left'),
+    (plt.xlim, 'right'),
+    (plt.ylim, 'bottom'),
+    (plt.ylim, 'top'),
+])
+def test_invalid_axes_limits(setter,side,value):
+    limit={side:value}
     with pytest.raises(ValueError):
-        plt.xlim(left=np.nan)
-    with pytest.raises(ValueError):
-        plt.xlim(left=np.inf)
-    with pytest.raises(ValueError):
-        plt.xlim(right=np.nan)
-    with pytest.raises(ValueError):
-        plt.xlim(right=np.inf)
-
-    with pytest.raises(ValueError):
-        plt.ylim(bottom=np.nan)
-    with pytest.raises(ValueError):
-        plt.ylim(bottom=np.inf)
-    with pytest.raises(ValueError):
-        plt.ylim(top=np.nan)
-    with pytest.raises(ValueError):
-        plt.ylim(top=np.inf)
+        setter(**limit)

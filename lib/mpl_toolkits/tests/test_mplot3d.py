@@ -493,32 +493,16 @@ def test_autoscale():
     assert ax.get_w_lims() == (0, 1, -.1, 1.1, -.4, 2.4)
 
 
-def test_invalid_axes_limits():
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
+@pytest.mark.parametrize('value', [np.inf, np.nan])
+@pytest.mark.parametrize(('setter', 'side'), [
+    (plt.figure().add_subplot(111,projection='3d').set_xlim3d, 'left'),
+    (plt.figure().add_subplot(111,projection='3d').set_xlim3d, 'right'),
+    (plt.figure().add_subplot(111,projection='3d').set_ylim3d, 'bottom'),
+    (plt.figure().add_subplot(111,projection='3d').set_ylim3d, 'top'),
+    (plt.figure().add_subplot(111,projection='3d').set_zlim3d, 'bottom'),
+    (plt.figure().add_subplot(111,projection='3d').set_zlim3d, 'top'),
+])
+def test_invalid_axes_limits(setter,side,value):
+    limit={side:value}
     with pytest.raises(ValueError):
-        ax.set_xlim3d(left=np.nan)
-    with pytest.raises(ValueError):
-        ax.set_xlim3d(left=np.inf)
-    with pytest.raises(ValueError):
-        ax.set_xlim3d(right=np.nan)
-    with pytest.raises(ValueError):
-        ax.set_xlim3d(right=np.inf)
-
-    with pytest.raises(ValueError):
-        ax.set_ylim3d(bottom=np.nan)
-    with pytest.raises(ValueError):
-        ax.set_ylim3d(bottom=np.inf)
-    with pytest.raises(ValueError):
-        ax.set_ylim3d(top=np.nan)
-    with pytest.raises(ValueError):
-        ax.set_ylim3d(top=np.inf)
-
-    with pytest.raises(ValueError):
-        ax.set_zlim3d(bottom=np.nan)
-    with pytest.raises(ValueError):
-        ax.set_zlim3d(bottom=np.inf)
-    with pytest.raises(ValueError):
-        ax.set_zlim3d(top=np.nan)
-    with pytest.raises(ValueError):
-        ax.set_zlim3d(top=np.inf)
+        setter(**limit)
