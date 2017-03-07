@@ -495,14 +495,14 @@ def test_autoscale():
 
 @pytest.mark.parametrize('value', [np.inf, np.nan])
 @pytest.mark.parametrize(('setter', 'side'), [
-    (plt.figure().add_subplot(111,projection='3d').set_xlim3d, 'left'),
-    (plt.figure().add_subplot(111,projection='3d').set_xlim3d, 'right'),
-    (plt.figure().add_subplot(111,projection='3d').set_ylim3d, 'bottom'),
-    (plt.figure().add_subplot(111,projection='3d').set_ylim3d, 'top'),
-    (plt.figure().add_subplot(111,projection='3d').set_zlim3d, 'bottom'),
-    (plt.figure().add_subplot(111,projection='3d').set_zlim3d, 'top'),
+    (plt.figure().add_subplot(111, projection='3d').set_xlim3d, 'left'),
+    (plt.figure().add_subplot(111, projection='3d').set_xlim3d, 'right'),
+    (plt.figure().add_subplot(111, projection='3d').set_ylim3d, 'bottom'),
+    (plt.figure().add_subplot(111, projection='3d').set_ylim3d, 'top'),
+    (plt.figure().add_subplot(111, projection='3d').set_zlim3d, 'bottom'),
+    (plt.figure().add_subplot(111, projection='3d').set_zlim3d, 'top'),
 ])
-def test_invalid_axes_limits(setter,side,value):
-    limit={side:value}
+def test_invalid_axes_limits(setter, side, value):
+    limit = {side: value}
     with pytest.raises(ValueError):
         setter(**limit)
